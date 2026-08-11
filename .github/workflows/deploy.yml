@@ -3,15 +3,17 @@ name: Deploy Checkout Service
 on:
   push:
     branches:
-      - '*'
+      - main
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://checkout.example.com
     permissions:
       contents: read
-      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -41,3 +43,4 @@ jobs:
         run: |
           echo "Production deployment completed"
           echo "All systems nominal"
+
